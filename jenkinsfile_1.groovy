@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('example') {
             steps {
-                echo 'Hello world!'
+                echo 'Hello world!!'
                 script {
                     def browsers = ['chrome', 'firefox']
                     for (int i = 0; i < browsers.size(); ++i)
