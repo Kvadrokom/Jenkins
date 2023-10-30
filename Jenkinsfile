@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    options {
+        timestamps()
+        ansicolor('xtera')
+    }
     stages {
         stage('example') {
             steps {
