@@ -2,7 +2,7 @@ pipeline {
     agent any
     options {
         timestamps()
-        ansicolor('xtera')
+        ansiColor('xtera')
     }
     stages {
         stage('example') {
