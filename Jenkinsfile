@@ -1,7 +1,8 @@
-pipeline {
-    node {
-            BRANCH_NAMES = sh (script: 'git ls-remote -h https://github.com/Kvadrokom/Jenkins.git | sed \'s/\\(.*\\)\\/\\(.*\\)/\\2/\' ', returnStdout:true).trim()
+node {
+        BRANCH_NAMES = sh (script: 'git ls-remote -h https://github.com/Kvadrokom/Jenkins.git | sed \'s/\\(.*\\)\\/\\(.*\\)/\\2/\' ', returnStdout:true).trim()
     }
+
+pipeline {
     agent any
     parameters {
             choice(
