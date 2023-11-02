@@ -1,13 +1,40 @@
 pipeline {
     agent any
+    options {
+        timestamps()
+        ansiColor('xtera')
+    }
     stages {
-        stage('example') {
-            steps {
-                echo 'Hello world!!'
-                script {
-                    def browsers = ['chrome', 'firefox']
-                    for (int i = 0; i < browsers.size(); ++i)
-                        echo "testing the ${ 'browsers' } browser"
+        stage('example matrix') {
+            matrix {
+                axes {
+                    axis {
+                        name 'OS'
+                        values 'linux', 'chrome', 'safari'
+                    }
+                    axis {
+                        name 'BROWSERS'
+                        values 'firefox', 'chrome', 'safari'
+                    }
+                }
+                exludes {
+                    exlude {
+                        axis {
+                            name 'OS'
+                            values 'linux'
+                        }
+                        axis {
+                            name 'BROWSERS'
+                            value 'safari'
+                        }
+                    }
+                }
+                stages {
+                    stage('Matrix hello') {
+                        steps {
+                            echo ' hello world from ${OS} ${BROWSERS}'
+                        }
+                    }
                 }
             }
         }
