@@ -1,25 +1,26 @@
-node {
-        BRANCH_NAMES = sh (script: 'git ls-remote -h https://github.com/Kvadrokom/Jenkins.git | sed \'s/\\(.*\\)\\/\\(.*\\)/\\2/\' ', returnStdout:true).trim()
-    }
-
 pipeline {
     agent any
-    parameters {
-            choice(
-                name: 'BranchName',
-                choices: "${BRANCH_NAMES}",
-                description: 'to refresh the list, go to configure, disable "this build has parameters", launch build (without parameters)to reload the list and stop it, then launch it again (with parameters)'
-            )
-        }
-
+    options {
+            timestamps()
+            ansiColor('xtera')
+    }
     stages {
-        stage('example') {
+        stage('init') {
             steps {
-                echo 'Hello world!!'
-                script {
-                    def browsers = ['chrome', 'firefox']
-                    for (int i = 0; i < browsers.size(); ++i)
-                        echo "testing the ${ 'browsers' } browser"
+                echo 'init Hello world!!'
+            }
+        }
+        stage('example parallel') {
+        parallel {
+            stage('chrome') {
+                steps {
+                    echo 'Hello from Chrome!!!'
+                    }
+                }
+            stage('firefox') {
+                steps {
+                    echo 'Hello from Firefox!!!'
+                    }
                 }
             }
         }
