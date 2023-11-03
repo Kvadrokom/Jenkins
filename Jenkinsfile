@@ -1,54 +1,29 @@
-pipeline {
-    agent any
-    options {
-        timestamps()
-        ansiColor('xtera')
-    }
-    stages {
-        stage('example matrix') {
-            matrix {
-                axes {
-                    axis {
-                        name 'OS'
-                        values 'linux', 'chrome', 'safari'
-                    }
-                    axis {
-                        name 'BROWSERS'
-                        values 'firefox', 'chrome', 'safari'
-                    }
-                }
-                exludes {
-                    exlude {
-                        axis {
-                            name 'OS'
-                            values 'linux'
-                        }
-                        axis {
-                            name 'BROWSERS'
-                            value 'safari'
-                        }
-                    }
-                }
-                stages {
-                    stage('Matrix hello') {
-                        steps {
-                            echo ' hello world from ${OS} ${BROWSERS}'
-                        }
-                    }
-                }
-            }
+node('master') {
+    try {
+        stage('Example') {
+            echo 'Hello world!'
+            def browsers = ['chrome', 'safari', 'edge']
+            for (int i = 0, i < browsers.size(), i++)
+                echo 'Testing ${browsers[i]} browser'
         }
     }
-    post {
-        failure{
-            echo 'I will always say Hello only failure'
+    catch(Exception e) {
+        echo ('I will allways say Hello only failure')
+        echo(e.message.to_string())
+    }
+    finally {
+        def currentResult = 'Success'
+        switch (currentResult) {
+            case 'UNSTABLE':
+                echo('This wills run only if the run was marked unstable')
+                break
+            case 'Success':
+                echo('I will allways say Hello only success')
+                break
+            default:
+                echo('Current status ${currentResult}')
         }
-        success {
-            echo 'I will always say Hello only success'
-        }
-        always {
-            echo 'I will always say Hello only again'
-            cleanWs()
-        }
+        echo 'I will allways say Hello again'
+        cleanWs()
     }
 }
