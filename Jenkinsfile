@@ -21,7 +21,7 @@ node {
                 echo('I will allways say Hello only success')
                 break
             default:
-                echo('Current status ${currentResult}')
+                echo("Current status ${currentResult}")
         }
         echo 'I will allways say Hello again'
         cleanWs()
