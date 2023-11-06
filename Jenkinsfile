@@ -5,8 +5,8 @@ node {
         stage('Scripted parallel') {
             Map<String, Closure> executers = [:]
             def browsers = ['chrome', 'safari', 'edge']
-            browsers.each { browsers ->
-                executers[browsers] = {
+            browsers.each { browser ->
+                executers[browser] = {
                     echo("Testing the ${browsers} browser")
                 }
             }
