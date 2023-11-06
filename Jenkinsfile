@@ -12,7 +12,7 @@ node {
         echo(e.message.to_string())
     }
     finally {
-        def currentResult = currentBuild.result
+        def currentResult = currentBuild.result ?: 'Success'
         switch (currentResult) {
             case 'UNSTABLE':
                 echo('This wills run only if the run was marked unstable')
