@@ -1,5 +1,5 @@
 node {
-    timestamp()
+    timestamps()
     ansiColor('xtera')
     try {
         stage('Scripted parallel') {
