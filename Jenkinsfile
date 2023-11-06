@@ -1,4 +1,4 @@
-node('master') {
+node('none') {
     try {
         stage('Example') {
             echo 'Hello world!'
