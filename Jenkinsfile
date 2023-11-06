@@ -7,7 +7,7 @@ node {
                     def browsers = ['chrome', 'safari', 'edge']
                     browsers.each { browser ->
                         executers[browser] = {
-                            echo("Testing the ${browsers} browser")
+                            echo("Testing the ${browser} browser")
                         }
                     }
                     parallel(executers)
