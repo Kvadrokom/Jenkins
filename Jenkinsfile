@@ -3,7 +3,7 @@ node('master') {
         stage('Example') {
             echo 'Hello world!'
             def browsers = ['chrome', 'safari', 'edge']
-            for (int i = 0, i < browsers.size(), i++)
+            for (int i = 0; i < browsers.size(); i++)
                 echo 'Testing ${browsers[i]} browser'
         }
     }
