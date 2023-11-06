@@ -2,10 +2,23 @@ node {
     timestamps() {
         ansiColor('xtera') {
             try {
+                properties([
+                    parametries([
+                        extendChoice(
+                            defaultValue: 'chrome,firefox,sberbrowser',
+                            multiSelectDelimiter: ',',
+                            name: 'BROWSERS',
+                            quoteValue: false
+                            saveJSONParametersToFile: false,
+                            type: 'PT_CHECKBOX',
+                            value: 'chrome,firefox,edge,safari,sberbrowser'
+                            visibleItemCount: 5])
+                        )
+                ])
                 stage('Scripted parallel') {
                     Map<String, Closure> executers = [:]
-                    def browsers = ['chrome', 'safari', 'edge']
-                    browsers.each { browser ->
+//                     def browsers = ['chrome', 'safari', 'edge']
+                    BROWSERS.tokenize(',').each { browser ->
                         executers[browser] = {
                             echo("Testing the ${browser} browser")
                         }
