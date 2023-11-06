@@ -1,10 +1,16 @@
 node {
+    timestamp()
+    ansiColor('xtera')
     try {
-        stage('Example') {
-            echo 'Hello world!'
+        stage('Scripted parallel') {
+            Map<String, Closure> executers = [:]
             def browsers = ['chrome', 'safari', 'edge']
-            for (int i = 0; i < browsers.size(); i++)
-                echo "Testing ${browsers[i]} browser"
+            browsers.each { browsers ->
+                executers[browsers] = {
+                    echo("Testing the ${browsers} browser")
+                }
+            }
+            parallel(executers)
         }
     }
     catch(Exception e) {
