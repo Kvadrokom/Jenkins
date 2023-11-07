@@ -12,8 +12,8 @@ node {
                             saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
                             value: 'chrome,firefox,edge,safari,sberbrowser',
-                            visibleItemCount: 5])
-                        )
+                            visibleItemCount: 5
+                        ]))
                 ])
                 stage('Scripted parallel') {
                     Map<String, Closure> executers = [:]
