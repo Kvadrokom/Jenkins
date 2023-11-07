@@ -3,7 +3,7 @@ node {
         ansiColor('xtera') {
             try {
                 properties([
-                    parametries([
+                    parameters([
                         extendedChoice(
                             defaultValue: 'chrome,firefox,sberbrowser',
                             multiSelectDelimiter: ',',
