@@ -9,7 +9,7 @@ node {
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false
-                            saveJSONParametersToFile: false,
+                            saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
                             value: 'chrome,firefox,edge,safari,sberbrowser'
                             visibleItemCount: 5])
