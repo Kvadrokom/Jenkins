@@ -18,8 +18,8 @@ node {
                 ])
                 stage('Scripted parallel') {
                     Map<String, Closure> executers = [:]
-//                     def browsers = ['chrome', 'safari', 'edge']
-                    BROWSERS.tokenize(',').each { browser ->
+//                      def browsers = ['chrome', 'safari', 'edge']
+                        params.BROWSERS.tokenize(',').each { browser ->
                         executers[browser] = {
                             echo("Testing the ${browser} browser")
                         }
