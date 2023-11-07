@@ -17,6 +17,8 @@ node {
                             visibleItemCount: 5
                         )
                     ])
+                ])
+                properties([
                     parameters([
                         extendedChoice(
                             defaultValue: 'master',
