@@ -4,7 +4,7 @@ node {
             try {
                 properties([
                     parametries([
-                        extendChoice(
+                        extendsChoice(
                             defaultValue: 'chrome,firefox,sberbrowser',
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
