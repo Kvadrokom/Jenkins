@@ -29,7 +29,7 @@ node {
             }
             catch(Exception e) {
                 echo ('I will allways say Hello only failure')
-                echo(e.message.to_string())
+                echo(e.message.toString())
             }
             finally {
                 def currentResult = currentBuild.result ?: 'Success'
