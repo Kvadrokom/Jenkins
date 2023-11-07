@@ -8,7 +8,7 @@ node {
                             defaultValue: 'chrome,firefox,sberbrowser',
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
-                            quoteValue: false
+                            quoteValue: false,
                             saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
                             value: 'chrome,firefox,edge,safari,sberbrowser'
