@@ -1,11 +1,13 @@
 node {
+    gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
+    gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
     timestamps() {
         ansiColor('xtera') {
             try {
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: 'chrome,firefox,sberbrowser',
+                            defaultValue: 'chrome,firefox,sberbrowser,edge,safari',
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false,
@@ -13,6 +15,18 @@ node {
                             type: 'PT_CHECKBOX',
                             value: 'chrome,firefox,edge,safari,sberbrowser',
                             visibleItemCount: 5
+                        )
+                    ])
+                    parameters([
+                        extendedChoice(
+                            defaultValue: 'master',
+                            multiSelectDelimiter: ',',
+                            name: 'branch',
+                            quoteValue: false,
+                            saveJSONParameterToFile: false,
+                            type: 'PT_SINGLESELECT',
+                            value: ${gitBrances},
+                            visibleItemCount: ${gitBranches}.size()
                         )
                     ])
                 ])
