@@ -20,20 +20,20 @@ node {
                         )
                     ])
                 ])
-                properties([
-                    parameters([
-                        extendedChoice(
-                            defaultValue: 'master',
-                            multiSelectDelimiter: ',',
-                            name: 'branch',
-                            quoteValue: false,
-                            saveJSONParameterToFile: false,
-                            type: 'PT_SINGLESELECT',
-                            value: ${branches},
-                            visibleItemCount: ${sz}
-                        )
-                    ])
-                ])
+//                 properties([
+//                     parameters([
+//                         extendedChoice(
+//                             defaultValue: 'master',
+//                             multiSelectDelimiter: ',',
+//                             name: 'branch',
+//                             quoteValue: false,
+//                             saveJSONParameterToFile: false,
+//                             type: 'PT_SINGLESELECT',
+//                             value: ${branches},
+//                             visibleItemCount: ${sz}
+//                         )
+//                     ])
+//                 ])
                 stage('Scripted parallel') {
                     Map<String, Closure> executers = [:]
 //                      def browsers = ['chrome', 'safari', 'edge']
