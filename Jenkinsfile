@@ -1,6 +1,8 @@
 node {
-    gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
-    gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
+    def gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
+    def gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
+    def sz = ${gitBranches}.size()
+    def branches = gitBrances.ids.join(" ")
     timestamps() {
         ansiColor('xtera') {
             try {
@@ -27,8 +29,8 @@ node {
                             quoteValue: false,
                             saveJSONParameterToFile: false,
                             type: 'PT_SINGLESELECT',
-                            value: ${gitBrances},
-                            visibleItemCount: ${gitBranches}.size()
+                            value: ${branches},
+                            visibleItemCount: ${sz}
                         )
                     ])
                 ])
