@@ -6,16 +6,19 @@ node {
     timestamps() {
         ansiColor('xtera') {
             try {
+
+                listBrowsers = readFile("browsers.yml")
+
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: 'chrome,firefox,sberbrowser,edge,safari',
+                            defaultValue: listBrowsers.join(',')
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false,
                             saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
-                            value: 'chrome,firefox,edge,safari,sberbrowser',
+                            value: listBrowsers.join(','),
                             visibleItemCount: 5
                         )
                     ])
