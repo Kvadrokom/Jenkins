@@ -2,7 +2,7 @@ node {
     def gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
     def gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
 //     def sz = ${gitBranches}.size()
-    def branches = ${gitBranches}.ids.join(" ")
+//     def branches = ${gitBranches}.ids.join(" ")
     timestamps() {
         ansiColor('xtera') {
             try {
