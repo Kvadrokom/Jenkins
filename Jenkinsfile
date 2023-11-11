@@ -8,7 +8,7 @@ node {
             try {
 
                 listBrowsers = readFile("browsers.yml")
-                print(listBrowsers)
+                print('listBrowsers = ', listBrowsers)
 
                 properties([
                     parameters([
