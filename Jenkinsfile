@@ -12,7 +12,7 @@ node {
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: listBrowsers.join(',')
+                            defaultValue: listBrowsers.join(','),
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false,
