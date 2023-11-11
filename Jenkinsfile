@@ -12,13 +12,13 @@ node {
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: listBrowsers.join(','),
+                            defaultValue: listBrowsers.browsers.join(','),
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false,
                             saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
-                            value: listBrowsers.join(','),
+                            value: listBrowsers.browsers.join(','),
                             visibleItemCount: 5
                         )
                     ])
