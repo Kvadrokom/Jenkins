@@ -1,15 +1,30 @@
+int len(lst){
+    int sz = 0
+    for (line in lst) {
+        sz++
+    }
+    return sz
+}
+
+String convertYamlToString(file) {
+    String fileContents = new File(file).getText('UTF-8')
+    lines = fileContents.readLines()
+    ln = ''
+    for (int i = 1; i < len(lines); ++i)
+        ln = ln + lines[i].replaceAll("  - ", ",")
+    return ln.substring(1, len(ln))
+}
+
 node {
-    def gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
-    def gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
-//     def sz = ${gitBranches}.size()
-//     def branches = ${gitBranches}.ids.join(" ")
     timestamps() {
         ansiColor('xtera') {
             try {
-
-                listBrowsers = readFile("browsers.yml")
-                print('listBrowsers = ', listBrowsers)
-
+                checkout scm
+                sh("ls -lha ${env.WORKSPACE}")
+                print('Hi from try')
+                def listBrowsers = convertYamlToString("${env.WORKSPACE}/browsers.yml")
+                sh("cat ${env.WORKSPACE}/browsers.yml")
+                print('Hi after read file')
                 properties([
                     parameters([
                         extendedChoice(
@@ -39,7 +54,7 @@ node {
 //                     ])
 //                 ])
                 stage('Scripted parallel') {
-                    print(BROWSERS)
+                    print('Hi from stage parallel')
                     Map<String, Closure> executers = [:]
 //                      def browsers = ['chrome', 'safari', 'edge']
                         params.BROWSERS.tokenize(',').each { browser ->
