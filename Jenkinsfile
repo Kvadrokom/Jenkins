@@ -22,20 +22,24 @@ node {
                 checkout scm
                 sh("ls -lha ${env.WORKSPACE}")
                 print('Hi from try')
+                String fileContents = new File('${env.WORKSPACE}/browsers.yml').getText('UTF-8')
+                lines = fileContents.readLines()
+                def numberValues = len(lines) - 1
                 def listBrowsers = convertYamlToString("${env.WORKSPACE}/browsers.yml")
                 sh("cat ${env.WORKSPACE}/browsers.yml")
                 print('Hi after read file')
+                print(listBrowsers)
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: listBrowsers.browsers.join(','),
+                            defaultValue: listBrowsers,
                             multiSelectDelimiter: ',',
                             name: 'BROWSERS',
                             quoteValue: false,
                             saveJSONParameterToFile: false,
                             type: 'PT_CHECKBOX',
-                            value: listBrowsers.browsers.join(','),
-                            visibleItemCount: 5
+                            value: listBrowsers,
+                            visibleItemCount: numberValues
                         )
                     ])
                 ])
