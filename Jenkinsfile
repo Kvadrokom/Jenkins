@@ -21,8 +21,9 @@ node {
             try {
                 checkout scm
                 sh("ls -lha ${env.WORKSPACE}")
+                lst = ['linux', 'macos', 'windows']
                 print('Hi from try')
-                String fileContents = new File('${env.WORKSPACE}/browsers.yml').getText('UTF-8')
+                String fileContents = new File("${env.WORKSPACE}/browsers.yml").getText('UTF-8')
                 lines = fileContents.readLines()
                 def numberValues = len(lines) - 1
                 def listBrowsers = convertYamlToString("${env.WORKSPACE}/browsers.yml")
@@ -45,13 +46,16 @@ node {
                 ])
                 stage('matrix') {
                     print('Hi from stage matrix')
+                    str = ''
                     Map<String, Closure> executers = [:]
+                    for(str in lst) {
                         params.BROWSERS.tokenize(',').each { browser ->
                         executers[browser] = {
-                            echo("Testing the ${browser} browser")
+                            echo("Testing ${str} the ${browser} browser")
                         }
                     }
-                    parallel(executers)
+                }
+                parallel(executers)
                 }
             }
             catch(Exception e) {
