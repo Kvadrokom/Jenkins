@@ -55,7 +55,7 @@ node {
                         }
                     }
                 }
-                parallel(executers)
+//                 parallel(executers)
                 }
             }
             catch(Exception e) {
