@@ -50,10 +50,10 @@ node {
                     flag = 0
                     Map<String, Closure> executers = [:]
                     for(str in lst) {
-                            params.BROWSERS.tokenize(',').each {
+                            params.BROWSERS.tokenize(',').each { browser ->
                             if (str == 'linux' && browsers == 'safari') flag = 1
                             if (flag == 0)
-                                browser ->  executers[browser] = echo("Testing ${str} the ${browser} browser")
+                               executers[browser] = echo("Testing ${str} the ${browser} browser")
                             flag = 0
                         }
                     }
