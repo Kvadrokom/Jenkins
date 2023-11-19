@@ -52,7 +52,7 @@ node {
                     for(str in lst) {
                             params.BROWSERS.tokenize(',').each {
                             if (str == 'linux' && browsers == 'safari') flag = 1
-                            if flag == 0
+                            if (flag == 0)
                                 browser ->  executers[browser] = echo("Testing ${str} the ${browser} browser")
                             flag = 0
                         }
