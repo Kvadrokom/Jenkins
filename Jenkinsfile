@@ -49,12 +49,10 @@ node {
                     str = ''
                     Map<String, Closure> executers = [:]
                     for(str in lst) {
-                        params.BROWSERS.tokenize(',').each { browser ->
-                        executers[browser] = {
-                            echo("Testing ${str} the ${browser} browser")
+                            params.BROWSERS.tokenize(',').each { browser ->
+                            executers[browser] = echo("Testing ${str} the ${browser} browser")
                         }
                     }
-                }
 //                 parallel(executers)
                 }
             }
