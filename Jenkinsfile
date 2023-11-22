@@ -43,9 +43,7 @@ node {
                             type: 'PT_SINGLESELECT',
                             value: gitBranches,
                             visibleItemCount: len(gitBranches)
-                        )
-                    ])
-                    parameters([
+                            )
                          extendedChoice(
                              defaultValue: listBrowsers,
                              multiSelectDelimiter: ',',
