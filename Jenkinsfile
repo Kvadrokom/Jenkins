@@ -15,6 +15,9 @@ String convertYamlToString(file) {
     return ln.substring(1, len(ln))
 }
 
+gitUrl = "https://github.com/Kvadrokom/Jenkins.git"
+gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
+
 node {
     timestamps() {
         ansiColor('xtera') {
@@ -33,15 +36,26 @@ node {
                 properties([
                     parameters([
                         extendedChoice(
-                            defaultValue: listBrowsers,
-                            multiSelectDelimiter: ',',
-                            name: 'BROWSERS',
+                            defaultValue: gitBranches,
+                            name: 'branches',
                             quoteValue: false,
                             saveJSONParameterToFile: false,
-                            type: 'PT_CHECKBOX',
-                            value: listBrowsers,
-                            visibleItemCount: numberValues
+                            type: 'PT_SINGLESELECT',
+                            value: gitBranches,
+                            visibleItemCount: len(gitBranches)
                         )
+                    ])
+                    parameters([
+                         extendedChoice(
+                             defaultValue: listBrowsers,
+                             multiSelectDelimiter: ',',
+                             name: 'BROWSERS',
+                             quoteValue: false,
+                             saveJSONParameterToFile: false,
+                             type: 'PT_CHECKBOX',
+                             value: listBrowsers,
+                             visibleItemCount: numberValues
+                         )
                     ])
                 ])
                 stage('matrix') {
