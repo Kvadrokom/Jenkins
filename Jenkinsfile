@@ -44,7 +44,7 @@ node {
                             value: gitBranches,
                             visibleItemCount: len(gitBranches)
                             )
-                         Choice(
+                         choice(
                              defaultValue: listBrowsers,
                              multiSelectDelimiter: ',',
                              name: 'BROWSERS',
