@@ -35,7 +35,7 @@ node {
                 print(listBrowsers)
                 properties([
                     parameters([
-                        extendedChoice(
+                        activeChoice(
                             defaultValue: gitBranches,
                             name: 'branches',
                             quoteValue: false,
@@ -44,16 +44,16 @@ node {
                             value: gitBranches,
                             visibleItemCount: len(gitBranches)
                             )
-                         choice(
-                             defaultValue: listBrowsers,
-                             multiSelectDelimiter: ',',
-                             name: 'BROWSERS',
-                             quoteValue: false,
-                             saveJSONParameterToFile: false,
-                             type: 'PT_CHECKBOX',
-                             value: listBrowsers,
-                             visibleItemCount: numberValues
-                         )
+                        extendedChoice(
+                            defaultValue: listBrowsers,
+                            multiSelectDelimiter: ',',
+                            name: 'BROWSERS',
+                            quoteValue: false,
+                            saveJSONParameterToFile: false,
+                            type: 'PT_CHECKBOX',
+                            value: listBrowsers,
+                            visibleItemCount: numberValues
+                        )
                     ])
                 ])
                 stage('matrix') {
