@@ -39,10 +39,11 @@ node {
                             defaultValue: gitBranches,
                             name: 'branches',
                             quoteValue: false,
+                            groovyScript : "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse(),
                             saveJSONParameterToFile: false,
-                            type: 'PT_SINGLESELECT',
-                            value: gitBranches,
-                            visibleItemCount: len(gitBranches)
+                            type: 'PT_SINGLESELECT'
+//                             value: gitBranches,
+//                             visibleItemCount: len(gitBranches)
                             )
 //                         extendedChoice(
 //                             defaultValue: listBrowsers,
