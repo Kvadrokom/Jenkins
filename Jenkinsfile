@@ -4,7 +4,7 @@ pipeline {
         stage('checkout') {
             steps {
                 git branch: 'reminder',
-                    url: 'https://github.com/Kvadrokom/Jenkins.git'
+                    url: 'https://github.com/Kvadrokom/reminder.git'
                 }
                 sh 'pwd'
                 sh 'ls'
