@@ -1,17 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('example') {
+        stage('checkout') {
             steps {
-                echo 'Hello world!!'
-                script {
-                    def browsers = ['chrome', 'firefox']
-                    for (int i = 0; i < browsers.size(); ++i)
-                        echo "testing the ${ 'browsers' } browser"
+                git branch: 'reminder',
+                    url: 'https://github.com/Kvadrokom/Jenkins.git'
                 }
+                sh 'pwd'
+                sh 'ls'
             }
         }
-    }
     post {
         failure{
             echo 'I will always say Hello only failure'
