@@ -5,9 +5,9 @@ pipeline {
             steps {
                 git branch: 'reminder',
                     url: 'https://github.com/Kvadrokom/reminder.git'
-                }
                 sh 'pwd'
                 sh 'ls'
+                }
             }
         }
     post {
