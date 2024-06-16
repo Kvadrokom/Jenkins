@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git branch: 'reminder',
+                git branch: 'master',
                     url: 'https://github.com/Kvadrokom/reminder.git'
                 sh 'pwd'
                 sh 'ls'
