@@ -9,7 +9,6 @@ pipeline {
                 sh 'ls'
                 }
             }
-        }
          stage('checkout') {
             steps {
                 git branch: 'master',
@@ -23,6 +22,7 @@ pipeline {
                 sh 'ansible-playbook -i hosts.ini reminder.yaml'
                 }
             }
+    }
     post {
         failure{
             echo 'I will always say Hello only failure'
