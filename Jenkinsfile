@@ -16,7 +16,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 ansiblePlaybook(
-                     playbook: 'reminder.yml',
+                     playbook: 'reminder.yaml',
                      inventory: 'hosts.ini',
                      credentialsId: 'Test_ssh_key_deploy_reminder'
                    )
