@@ -18,13 +18,11 @@ pipeline {
                 sh 'ls'
                 }
             }
-        }
         stage('deploy') {
             steps {
                 sh 'ansible-playbook -i hosts.ini reminder.yaml'
                 }
             }
-        }
     post {
         failure{
             echo 'I will always say Hello only failure'
