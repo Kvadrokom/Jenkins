@@ -12,7 +12,7 @@ pipeline {
          stage('checkout2') {
             steps {
                 git branch: 'master',
-                    url: 'https://github.com/Kvadrokom/Ansible.git'
+                    url: 'https://github.com/Kvadrokom/AnsibleDeploy.git'
                 sh 'pwd'
                 sh 'ls'
                 }
