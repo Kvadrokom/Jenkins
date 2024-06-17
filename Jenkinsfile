@@ -10,6 +10,21 @@ pipeline {
                 }
             }
         }
+         stage('checkout') {
+            steps {
+                git branch: 'master',
+                    url: 'https://github.com/Kvadrokom/Ansible.git'
+                sh 'pwd'
+                sh 'ls'
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                sh 'ansible-playbook -i hosts.ini reminder.yaml'
+                }
+            }
+        }
     post {
         failure{
             echo 'I will always say Hello only failure'
