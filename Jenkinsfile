@@ -15,14 +15,12 @@ pipeline {
                     url: 'https://github.com/Kvadrokom/AnsibleDeploy.git'
                 sh 'pwd'
                 sh 'ls'
+                ansiblePlaybook('reminder.yml') {
+                  inventoryPath('hosts.ini')
+                  credentialsId('Test_ssh_key_deploy_reminder')
+                  }
                 }
             }
-       steps {
-            ansiblePlaybook('reminder.yml') {
-              inventoryPath('hosts.ini')
-              credentialsId('Test_ssh_key_deploy_reminder')
-            }
-        }
     }
     post {
         failure{
