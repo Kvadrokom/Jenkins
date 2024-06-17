@@ -17,11 +17,12 @@ pipeline {
                 sh 'ls'
                 }
             }
-        stage('deploy') {
-            steps {
-                sh 'ansible-playbook -i hosts.ini reminder.yaml'
-                }
+       steps {
+            ansiblePlaybook('reminder.yml') {
+              inventoryPath('hosts.ini')
+              credentialsId('Test_ssh_key_deploy_reminder')
             }
+        }
     }
     post {
         failure{
