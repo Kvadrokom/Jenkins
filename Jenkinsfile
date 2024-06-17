@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') {
+        stage('checkout1') {
             steps {
                 git branch: 'master',
                     url: 'https://github.com/Kvadrokom/reminder.git'
@@ -9,7 +9,7 @@ pipeline {
                 sh 'ls'
                 }
             }
-         stage('checkout') {
+         stage('checkout2') {
             steps {
                 git branch: 'master',
                     url: 'https://github.com/Kvadrokom/Ansible.git'
