@@ -7,6 +7,8 @@ pipeline {
                     url: 'https://github.com/Kvadrokom/reminder.git'
                 sh 'pwd'
                 sh 'ls'
+                sh 'whoami'
+                sh 'mkdir ~/ansible && cp reminder.yaml remiтder_utils.py ~/ansible'
                 }
             }
          stage('checkout2') {
@@ -16,10 +18,11 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 ansiblePlaybook(
-                     playbook: 'reminder.yaml',
-                     inventory: 'hosts.ini',
+                     playbook: '~/ansicle/reminder.yaml',
+                     inventory: '~/ansible/hosts.ini',
                      credentialsId: 'Test_ssh_key_deploy_reminder'
                    )
+                sh 'rm -rf ~/ansible'
                 }
             }
     }
