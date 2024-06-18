@@ -21,20 +21,22 @@ pipeline {
                      playbook: '~/ansicle/reminder.yaml',
                      inventory: '~/ansible/hosts.ini',
                      credentialsId: 'Test_ssh_key_deploy_reminder'
-                   )
-                sh 'rm -rf ~/ansible'
+                   )               
                 }
             }
     }
     post {
         failure{
             echo 'I will always say Hello only failure'
+            sh 'rm -rf ~/ansible'
         }
         success {
             echo 'I will always say Hello only success'
+            sh 'rm -rf ~/ansible'
         }
         always {
             echo 'I will always say Hello only again'
+            sh 'rm -rf ~/ansible'
             cleanWs()
         }
     }
