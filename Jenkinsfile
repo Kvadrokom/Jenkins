@@ -8,7 +8,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls'
                 sh 'whoami'
-                sh 'mkdir ~/ansible && cp reminder.yaml remiтder_utils.py ~/ansible'
+                sh 'mkdir ~/ansible && cp reminder.py reminder_utils.py ~/ansible'
                 }
             }
          stage('checkout2') {
