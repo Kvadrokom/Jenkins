@@ -1,44 +1,25 @@
 pipeline {
     agent any
-    stages {
-        stage('checkout1') {
-            steps {
-                git branch: 'master',
-                    url: 'https://github.com/Kvadrokom/reminder.git'
-                sh 'pwd'
-                sh 'ls'
-                sh 'whoami'
-                sh 'mkdir ~/ansible && cp reminder.py reminder_utils.py ~/ansible'
-                }
-            }
-         stage('checkout2') {
-            steps {
-                git branch: 'master',
-                    url: 'https://github.com/Kvadrokom/AnsibleDeploy.git'
-                sh 'pwd'
-                sh 'ls'
-                sh 'ls ~/ansible'
-                ansiblePlaybook(
-                     playbook: 'reminder.yaml',
-                     inventory: 'hosts.ini',
-                     credentialsId: 'Test_ssh_key_deploy_reminder'
-                   )               
-                }
-            }
+    environment {
+        ANsible_SERVER = '192.168.1.10'
+        PLAYBOOK_PATH = '/home/rem/Ansible/reminder/tasks/main.yaml'
+        INVENTORY_FILE = '/home/rem/Ansible/hosts.ini'
     }
-    post {
-        // failure{
-        //     echo 'I will always say Hello only failure'
-        //     sh 'rm -rf ~/ansible'
-        // }
-        // success {
-        //     echo 'I will always say Hello only success'
-        //     sh 'rm -rf ~/ansible'
-        // }
-        always {
-            echo 'I will always say Hello only again'
-            sh 'rm -rf ~/ansible'
-            cleanWs()
+    stages {
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    echo 'Starting Ansible Playbook...'
+                    sh """
+                        echo $USER
+                        ssh -o StrictHostKeyChecking=no \$USER@\${ANsible_SERVER} <<EOF
+                            export ANSIBLE_HOST_KEY_CHECKING=False
+                            cd \$(dirname "\${PLAYBOOK_PATH}")
+                            ansible-playbook \${PLAYBOOK_PATH} -i \${INVENTORY_FILE}
+                        EOF
+                    """
+                }
+            }
         }
     }
 }
