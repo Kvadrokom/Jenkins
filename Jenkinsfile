@@ -22,7 +22,7 @@ pipeline {
 ssh -i \$KEYFILE -o StrictHostKeyChecking=no \$USERNAME@\${ANsible_SERVER} <<EOF
 export ANSIBLE_HOST_KEY_CHECKING=False
 cd \$(dirname "\${PLAYBOOK_PATH}")
-ansible-playbook \${PLAYBOOK_PATH} -i \${INVENTORY_FILE} ${params.STAND_TYPE}
+ansible-playbook \${PLAYBOOK_PATH} -i \${INVENTORY_FILE} -e STAND_TYPE=${params.STAND_TYPE}
 EOF"""
                     }
                 }
