@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(
             name: 'BOT_NAME',
-            choices: ['reminder', 'bot2'],
+            choices: ['reminder', 'telebot'],
             description: 'Выберите бота для деплоя'
         )
         choice(
