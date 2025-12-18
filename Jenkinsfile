@@ -18,7 +18,7 @@ pipeline {
         ANSIBLE_SERVER = '192.168.1.10'
         ANSIBLE_USER = 'rem'
         ANSIBLE_HOME = '/home/rem/Ansible'
-        PLAYBOOKS_DIR = "${ANSIBLE_HOME}/playbooks"
+        PLAYBOOKS_DIR = "${ANSIBLE_HOME}"
         INVENTORY_FILE = "${ANSIBLE_HOME}/inventory/hosts.ini"
     }
     
