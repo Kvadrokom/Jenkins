@@ -9,7 +9,7 @@ pipeline {
         )
         choice(
             name: 'STAND_TYPE',
-            choices: ['test', 'prod'],
+            choices: ['test', 'prom'],
             description: 'Выберите стенд'
         )
     }
