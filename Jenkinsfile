@@ -19,7 +19,7 @@ pipeline {
         ANSIBLE_USER = 'rem'
         ANSIBLE_HOME = '/home/rem/Ansible'
         PLAYBOOKS_DIR = "${ANSIBLE_HOME}"
-        INVENTORY_FILE = "${ANSIBLE_HOME}/inventory/hosts.ini"
+        INVENTORY_FILE = "${ANSIBLE_HOME}/hosts.ini"
     }
     
     stages {
