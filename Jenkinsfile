@@ -65,9 +65,7 @@ pipeline {
                     echo "▶️  Запускаем playbook: ${PLAYBOOK_PATH}"
                     ansible-playbook "${PLAYBOOK_PATH}" \
                         -i "${INVENTORY_FILE}" \
-                        -e "bot_name=${params.BOT_NAME}" \
                         -e "stand_type=${params.STAND_TYPE}"
-                    
                     EOF
                     """
                 }
