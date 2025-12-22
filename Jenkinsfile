@@ -44,29 +44,15 @@ pipeline {
                     sshUserPrivateKey(
                         credentialsId: 'Ansible-key',
                         usernameVariable: 'USERNAME',
-                        keyFileVariable: 'KEYFILE',
-                        passphraseVariable: '')
+                        keyFileVariable: 'KEYFILE',  // ← Эта переменная!
+                        passphraseVariable: ''
+                    )
                 ]) {
                     sh """
-                    #!/bin/bash
-                    set -e
-                    
-                    echo "📡 Устанавливаем SSH соединение..."
-                    ssh -i "\$KEYFILE" \
-                        -o StrictHostKeyChecking=no \
-                        -o BatchMode=yes \
-                        "\$USERNAME@${ANSIBLE_SERVER}" << 'EOF'
-                    
-                    export ANSIBLE_HOST_KEY_CHECKING=False
-                    
-                    echo "📁 Переходим в директорию Ansible: ${ANSIBLE_HOME}"
-                    cd "${ANSIBLE_HOME}"
-                    
-                    echo "▶️  Запускаем playbook: ${PLAYBOOK_PATH}"
-                    ansible-playbook "${PLAYBOOK_PATH}" \
-                        -i "${INVENTORY_FILE}" \
-                        -e "stand_type=${params.STAND_TYPE}"
-                    EOF
+                    ssh -i "\$KEYFILE" \\
+                        -o StrictHostKeyChecking=no \\
+                        "\$USERNAME@${ANSIBLE_SERVER}" \\
+                        "cd ${ANSIBLE_HOME} && ansible-playbook ${PLAYBOOK_PATH} -i ${INVENTORY_FILE} -e stand_type=${params.STAND_TYPE}"
                     """
                 }
             }
