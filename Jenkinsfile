@@ -2,7 +2,6 @@ pipeline {
     agent any
     options {
         timestamps()
-        ansiColor('xtera')
     }
     stages {
         stage('example') {
@@ -13,6 +12,7 @@ pipeline {
                     for (int i = 0; i < browsers.size(); ++i)
                         echo "testing the ${ 'browsers' } browser"
                 }
+             ansiColor('xterm') 
             }
         }
     }
