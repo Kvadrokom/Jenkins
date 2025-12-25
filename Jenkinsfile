@@ -12,7 +12,9 @@ pipeline {
                     for (int i = 0; i < browsers.size(); ++i)
                         echo "testing the ${ 'browsers' } browser"
                 }
-             ansiColor('xterm') 
+             ansiColor('xterm') {
+                    echo '\033[32mGreen text!\033[0m'
+                }
             }
         }
     }
